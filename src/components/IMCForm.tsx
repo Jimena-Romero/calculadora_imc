@@ -98,6 +98,7 @@ const IMCForm: React.FC = () => {
         overflow: "hidden",
       }}
     >
+      <FloatingEmojis emoji={categoria ? emojisMap[categoria] : ""} />
 
       <h2>Calculadora de IMC</h2>
       <input
