@@ -85,7 +85,6 @@ const IMCForm: React.FC = () => {
         position: "relative",
         minHeight: "100vh",
         overflow: "hidden",
-        backgroundColor: "#f0f0f0",
       }}
     >
       <FloatingEmojis emoji={categoria ? emojisMap[categoria] : "🟦"} />
