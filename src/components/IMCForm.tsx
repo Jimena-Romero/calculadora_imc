@@ -26,7 +26,7 @@ const FloatingEmojis = ({ emoji }: { emoji: string }) => {
           y: Math.random() * window.innerHeight,
         },
       ]);
-    }, 500);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, []);
@@ -83,13 +83,11 @@ const IMCForm: React.FC = () => {
         position: "relative",
         minHeight: "100vh",
         overflow: "hidden",
-        background: "linear-gradient(135deg, #f9f9f9, #e0f7fa)", // ligero degradado de fondo
+        background: "linear-gradient(135deg, #f9f9f9, #e0f7fa)",
       }}
     >
-      {/* emojis de fondo */}
       <FloatingEmojis emoji={categoria ? emojisMap[categoria] : "🟦"} />
 
-      {/* marco elegante centrado */}
       <div
         style={{
           position: "relative",
@@ -97,11 +95,15 @@ const IMCForm: React.FC = () => {
           maxWidth: "360px",
           margin: "60px auto",
           padding: "30px 25px",
-          backgroundColor: "rgba(255, 255, 255, 0.85)", // semitransparente
+          height: "500px", // 👈 altura fija para que no cambie al calcular
+          backgroundColor: "rgba(255, 255, 255, 0.85)",
           borderRadius: "25px",
           boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
-          backdropFilter: "blur(8px)", // efecto vidrio
+          backdropFilter: "blur(8px)",
           textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center", // 👈 centra todo verticalmente
         }}
       >
         <h2 style={{ marginBottom: "20px", fontWeight: "600", color: "#333" }}>
