@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "npm run build && cross-env PORT=$PORT npx serve -s dist -l $PORT",
+    "start": "npm run build && npx serve -s dist -l tcp://0.0.0.0:$PORT",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write .",
     "test": "vitest"
   },
+
   "dependencies": {
     "cross-env": "^10.0.0",
     "framer-motion": "^12.23.12",
