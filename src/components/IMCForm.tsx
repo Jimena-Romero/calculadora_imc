@@ -37,11 +37,13 @@ const FloatingEmojis = ({ emoji }: { emoji: string }) => {
         <div
           key={i}
           style={{
-            position: "absolute",
+            position: "fixed", // 👈 cambia a fixed para que queden de fondo
             left: pos.x,
             top: pos.y,
-            fontSize: "3rem", // 👈 más grande
+            fontSize: "3rem",
             animation: "float 6s linear infinite",
+            zIndex: 0, // 👈 aseguramos que estén detrás del contenido
+            pointerEvents: "none", // 👈 no interfieran con clicks
           }}
         >
           {emoji}
@@ -76,40 +78,81 @@ const IMCForm: React.FC = () => {
   }, [peso, altura]);
 
   return (
-    <div style={{ padding: "20px", textAlign: "center", position: "relative", minHeight: "100vh" }}>
-      <h2>Calculadora de IMC</h2>
-      <input
-        type="text"
-        placeholder="Tu nombre"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-        style={{ display: "block", margin: "10px auto", padding: "10px" }}
-      />
-      <input
-        type="number"
-        placeholder="Peso (kg)"
-        value={peso}
-        onChange={(e) => setPeso(Number(e.target.value))}
-        style={{ display: "block", margin: "10px auto", padding: "10px" }}
-      />
-      <input
-        type="number"
-        placeholder="Altura (cm)"
-        value={altura}
-        onChange={(e) => setAltura(Number(e.target.value))}
-        style={{ display: "block", margin: "10px auto", padding: "10px" }}
-      />
+    <div
+      style={{
+        padding: "20px",
+        textAlign: "center",
+        position: "relative",
+        minHeight: "100vh",
+        overflow: "hidden", // 👈 evita scroll por emojis
+        backgroundColor: "#f0f0f0",
+      }}
+    >
+      <FloatingEmojis emoji={categoria ? emojisMap[categoria] : "💖"} />
 
-      {imc && categoria && (
-        <div style={{ marginTop: "20px", fontSize: "1.2rem" }}>
-          <p>
-            Hola <strong>{nombre || "usuario"}</strong>!! Tu IMC es{" "}
-            <strong>{imc.toFixed(2)}</strong> →{" "}
-            <strong>{categoria.toUpperCase()}</strong> {emojisMap[categoria]}
-          </p>
-          <FloatingEmojis emoji={emojisMap[categoria]} />
-        </div>
-      )}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1, // 👈 aseguramos que el formulario esté sobre los emojis
+          maxWidth: "400px",
+          margin: "0 auto",
+          padding: "30px",
+          backgroundColor: "#fff",
+          borderRadius: "20px",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+        }}
+      >
+        <h2>Calculadora de IMC</h2>
+        <input
+          type="text"
+          placeholder="Tu nombre"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          style={{
+            display: "block",
+            margin: "10px auto",
+            padding: "10px",
+            width: "90%",
+            fontSize: "1rem",
+          }}
+        />
+        <input
+          type="number"
+          placeholder="Peso (kg)"
+          value={peso}
+          onChange={(e) => setPeso(Number(e.target.value))}
+          style={{
+            display: "block",
+            margin: "10px auto",
+            padding: "10px",
+            width: "90%",
+            fontSize: "1rem",
+          }}
+        />
+        <input
+          type="number"
+          placeholder="Altura (cm)"
+          value={altura}
+          onChange={(e) => setAltura(Number(e.target.value))}
+          style={{
+            display: "block",
+            margin: "10px auto",
+            padding: "10px",
+            width: "90%",
+            fontSize: "1rem",
+          }}
+        />
+
+        {imc && categoria && (
+          <div style={{ marginTop: "20px", fontSize: "1.2rem" }}>
+            <p>
+              Hola <strong>{nombre || "usuario"}</strong>!! Tu IMC es{" "}
+              <strong>{imc.toFixed(2)}</strong> →{" "}
+              <strong>{categoria.toUpperCase()}</strong> {emojisMap[categoria]}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
