@@ -26,7 +26,7 @@ const FloatingEmojis = ({ emoji }: { emoji: string }) => {
           y: Math.random() * window.innerHeight,
         },
       ]);
-    }, 1500);
+    }, 1200); // velocidad de aparición
 
     return () => clearInterval(interval);
   }, []);
@@ -80,98 +80,69 @@ const IMCForm: React.FC = () => {
   return (
     <div
       style={{
+        padding: "20px",
+        textAlign: "center",
         position: "relative",
         minHeight: "100vh",
         overflow: "hidden",
-        background: "linear-gradient(135deg, #f9f9f9, #e0f7fa)",
+        backgroundColor: "#f0f0f0",
       }}
     >
       <FloatingEmojis emoji={categoria ? emojisMap[categoria] : "🟦"} />
 
-      <div
+      {/* Formulario sin marco */}
+      <h2>Calculadora de IMC</h2>
+      <input
+        type="text"
+        placeholder="Tu nombre"
+        value={nombre}
+        onChange={(e) => setNombre(e.target.value)}
         style={{
-          position: "relative",
-          zIndex: 1,
-          maxWidth: "360px",
-          margin: "60px auto",
-          padding: "30px 25px",
-          height: "500px", // 👈 altura fija para que no cambie al calcular
-          backgroundColor: "rgba(255, 255, 255, 0.85)",
-          borderRadius: "25px",
-          boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
-          backdropFilter: "blur(8px)",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center", // 👈 centra todo verticalmente
+          display: "block",
+          margin: "10px auto",
+          padding: "10px",
+          width: "90%",
+          fontSize: "1rem",
         }}
-      >
-        <h2 style={{ marginBottom: "20px", fontWeight: "600", color: "#333" }}>
-          Calculadora de IMC
-        </h2>
+      />
+      <input
+        type="number"
+        placeholder="Peso (kg)"
+        value={peso}
+        onChange={(e) => setPeso(Number(e.target.value))}
+        style={{
+          display: "block",
+          margin: "10px auto",
+          padding: "10px",
+          width: "90%",
+          fontSize: "1rem",
+        }}
+      />
+      <input
+        type="number"
+        placeholder="Altura (cm)"
+        value={altura}
+        onChange={(e) => setAltura(Number(e.target.value))}
+        style={{
+          display: "block",
+          margin: "10px auto",
+          padding: "10px",
+          width: "90%",
+          fontSize: "1rem",
+        }}
+      />
 
-        <input
-          type="text"
-          placeholder="Tu nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          style={{
-            display: "block",
-            margin: "10px auto",
-            padding: "12px",
-            width: "90%",
-            fontSize: "1rem",
-            borderRadius: "12px",
-            border: "1px solid #ccc",
-            outline: "none",
-          }}
-        />
-        <input
-          type="number"
-          placeholder="Peso (kg)"
-          value={peso}
-          onChange={(e) => setPeso(Number(e.target.value))}
-          style={{
-            display: "block",
-            margin: "10px auto",
-            padding: "12px",
-            width: "90%",
-            fontSize: "1rem",
-            borderRadius: "12px",
-            border: "1px solid #ccc",
-            outline: "none",
-          }}
-        />
-        <input
-          type="number"
-          placeholder="Altura (cm)"
-          value={altura}
-          onChange={(e) => setAltura(Number(e.target.value))}
-          style={{
-            display: "block",
-            margin: "10px auto",
-            padding: "12px",
-            width: "90%",
-            fontSize: "1rem",
-            borderRadius: "12px",
-            border: "1px solid #ccc",
-            outline: "none",
-          }}
-        />
-
-        {imc && categoria && (
-          <div style={{ marginTop: "20px", fontSize: "1.2rem", color: "#222" }}>
-            <p>
-              Hola <strong>{nombre || "usuario"}</strong>!! Tu IMC es{" "}
-              <strong>{imc.toFixed(2)}</strong> →{" "}
-              <strong>{categoria.toUpperCase()}</strong> {emojisMap[categoria]}
-            </p>
-          </div>
-        )}
-      </div>
+      {imc && categoria && (
+        <div style={{ marginTop: "20px", fontSize: "1.2rem" }}>
+          <p>
+            Hola <strong>{nombre || "usuario"}</strong>!! Tu IMC es{" "}
+            <strong>{imc.toFixed(2)}</strong> →{" "}
+            <strong>{categoria.toUpperCase()}</strong> {emojisMap[categoria]}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
 
 export default IMCForm;
-
