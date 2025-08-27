@@ -26,7 +26,7 @@ const FloatingEmojis = ({ emoji }: { emoji: string }) => {
           y: Math.random() * window.innerHeight,
         },
       ]);
-    }, 1200); // velocidad de aparición
+    }, 1200);
 
     return () => clearInterval(interval);
   }, []);
@@ -77,6 +77,17 @@ const IMCForm: React.FC = () => {
     }
   }, [peso, altura]);
 
+  const inputStyle = {
+    display: "block",
+    margin: "10px auto",
+    padding: "10px",
+    width: "300px", // tamaño fijo
+    minWidth: "300px",
+    maxWidth: "300px",
+    fontSize: "1rem",
+    boxSizing: "border-box" as const,
+  };
+
   return (
     <div
       style={{
@@ -89,46 +100,27 @@ const IMCForm: React.FC = () => {
     >
       <FloatingEmojis emoji={categoria ? emojisMap[categoria] : "🟦"} />
 
-      {/* Formulario sin marco */}
       <h2>Calculadora de IMC</h2>
       <input
         type="text"
         placeholder="Tu nombre"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
-        style={{
-          display: "block",
-          margin: "10px auto",
-          padding: "10px",
-          width: "90%",
-          fontSize: "1rem",
-        }}
+        style={inputStyle}
       />
       <input
         type="number"
         placeholder="Peso (kg)"
         value={peso}
         onChange={(e) => setPeso(Number(e.target.value))}
-        style={{
-          display: "block",
-          margin: "10px auto",
-          padding: "10px",
-          width: "90%",
-          fontSize: "1rem",
-        }}
+        style={inputStyle}
       />
       <input
         type="number"
         placeholder="Altura (cm)"
         value={altura}
         onChange={(e) => setAltura(Number(e.target.value))}
-        style={{
-          display: "block",
-          margin: "10px auto",
-          padding: "10px",
-          width: "90%",
-          fontSize: "1rem",
-        }}
+        style={inputStyle}
       />
 
       {imc && categoria && (
