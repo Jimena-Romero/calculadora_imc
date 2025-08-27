@@ -1,20 +1,11 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import UseEffect from "./UseEffect";
-import SinUseEffect from "./SinUseEffect";
-import UseEffect2 from "./UseEffect2";
-import UseEffect3 from "./UseEffect3";
+import React from "react";
+import IMCForm from "./components/IMCForm";
 
 function App() {
   return (
-    <>
-      <div>
-        <SinUseEffect />
-
-        <UseEffect3 />
-      </div>
-    </>
+    <div className="min-h-screen bg-gray-200 flex items-center justify-center">
+      <IMCForm />
+    </div>
   );
 }
 

@@ -1,0 +1,61 @@
+:root {
+  --bg: #0b0f17;
+  --fg: #e5e7eb;
+  --muted: #9ca3af;
+  --card: #111827;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-animated {
+  background: linear-gradient(-45deg, #6366F1, #10B981, #F59E0B, #EF4444);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 10% 0%, #111827, #0b0f17);
+  color: var(--fg);
+}
+
+.app {
+  max-width: 880px;
+  margin: 48px auto;
+  padding: 0 16px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+input, select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #374151;
+  background: #0b1220;
+  color: var(--fg);
+}
+
+label { color: var(--muted); }
+
+footer {
+  margin-top: 18px;
+  font-size: 12px;
+}
