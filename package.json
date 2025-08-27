@@ -4,20 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "start": "npm run build && npx serve -s dist -l tcp://0.0.0.0:$PORT",
-    "lint": "eslint . --ext .ts,.tsx",
-    "format": "prettier --write .",
-    "test": "vitest"
+    "dev": "vite",                   
+    "build": "vite build",          
+    "start": "serve -s dist -l $PORT"            
   },
-
   "dependencies": {
     "cross-env": "^10.0.0",
     "framer-motion": "^12.23.12",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "serve": "^14.2.4"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.8.0",
@@ -34,6 +29,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "jsdom": "^26.1.0",
     "prettier": "^3.6.2",
+    "serve": "^14.2.4",
     "vite": "^5.4.19",
     "vitest": "^3.2.4"
   }
